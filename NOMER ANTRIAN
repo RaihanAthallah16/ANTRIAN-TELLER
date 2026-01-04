@@ -1,0 +1,63 @@
+#include <iostream>
+#include <queue>
+#include <string>
+
+using namespace std;
+
+int main() {
+    queue<string> antrian;
+    int pilihan;
+    string nama;
+
+    do {
+        cout << "\n=== MENU ANTRIAN TELLER ===\n";
+        cout << "1. Tambah Antrian\n";
+        cout << "2. Panggil Antrian\n";
+        cout << "3. Lihat Antrian\n";
+        cout << "4. Keluar\n";
+        cout << "Pilih: ";
+        cin >> pilihan;
+
+        switch (pilihan) {
+            case 1:
+                cout << "Masukkan nama nasabah: ";
+                cin >> nama;
+                antrian.push(nama);
+                cout << "Nasabah berhasil ditambahkan.\n";
+                break;
+
+            case 2:
+                if (antrian.empty()) {
+                    cout << "Antrian kosong.\n";
+                } else {
+                    cout << "Nasabah dilayani: " << antrian.front() << endl;
+                    antrian.pop();
+                }
+                break;
+
+            case 3:
+                if (antrian.empty()) {
+                    cout << "Antrian kosong.\n";
+                } else {
+                    cout << "Antrian saat ini:\n";
+                    queue<string> temp = antrian;
+                    int nomor = 1;
+                    while (!temp.empty()) {
+                        cout << nomor++ << ". " << temp.front() << endl;
+                        temp.pop();
+                    }
+                }
+                break;
+
+            case 4:
+                cout << "Terima kasih.\n";
+                break;
+
+            default:
+                cout << "Pilihan tidak valid.\n";
+        }
+
+    } while (pilihan != 4);
+
+    return 0;
+}
